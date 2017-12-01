@@ -1,0 +1,166 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Socket.IO Chat Example</title>
+  <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="css/estilo.css">
+  
+</head>
+<body>
+ 
+
+  <ul class="pages" >
+    <li class="chat page">
+      <div class="chatArea">
+        <ul class="messages" ></ul>
+      </div>
+      <input class="inputMessage" placeholder="enviar mensaje..."/>
+    </li>
+    <li class="login page">
+      <div class="form">
+        <h3 class="title">¿Cual es tu Nombre?</h3>
+        <input class="usernameInput" type="text" maxlength="18" />
+      </div>
+    </li>
+  </ul>
+
+  <video  id="video"></video>
+  <canvas id="canvas" width="400" height="400"></canvas>
+  <script src="/socket.io/socket.io.js"></script>
+  <script>
+    (function(d, w, n, io){
+      'use strict'
+
+      var io=io(),
+        startCamera=false,
+        video=d.querySelector('#video'),
+        canvas=d.querySelector('#canvas'),
+        context=canvas.getContext('2d')
+        navigator.streaming=(
+            n.getUserMedia ||
+            n.webkitGetUserMedia ||
+            n.mozGetUserMedia ||
+            n.msGetUserMedia 
+          )
+
+        navigator.streaming({
+          video:true,
+          audio: false
+        }, function(stream){
+          startCamera=true
+          video.src=w.URL.createObjectURL(stream)
+        }, function(err){
+          alert('erro al acceder a la camara web:'+ err)
+        })
+
+        w.playVideo=(function(cb){
+          return w.requestAnimationFrame||
+               w.webkitrequestAnimationFrame||
+                w.mozrequestAnimationFrame||
+                 w.msrequestAnimationFrame||
+                 function(cb){
+                  w.setTimecut(cb, 1000/100)
+                 }
+        })()
+
+        function streamVideo(context, canvas, video)
+        {
+          var outputStream=canvas.toDataURL('image/png', .4)
+          context.drawImage(video, 0,0)
+          
+          if(startCamera)
+            io.emit('streaming', outputStream)
+
+          playVideo(function(){
+            streamVideo(context, canvas, video)
+          })
+
+        }
+        w.addEventListener('load', function(){
+            video.autoplay=true
+            video.style.display='none'
+            streamVideo(context, canvas, video)
+        })
+    })(document, window, navigator, io)
+  </script>
+
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.4/jquery.min.js"></script>
+  <script src="/socket.io/socket.io.js"></script>
+  <script src="/main.js"></script>
+   <div id="principal">
+      <header>
+        <div id="logo">
+          <!--<CENTER><h2 class="titulo">TIENDA</h2>
+          <P class="subtitulo">DE ROPA</P></CENTER>-->
+                <img src="img/butiq.jpg" width="295" height="190">
+
+        </div>
+        <nav class="menu">
+          <UL>
+            <LI><a href="">Inicio</a></LI>
+                <LI><a href="">Nosotros</a></LI>
+                <LI><a href="">Servicios</a></LI>
+                <LI><a href="">clientes</a></LI>
+                <LI><a href="">Contacto</a></LI>
+          </UL>
+        </nav>
+      </header>
+        <section id="slide">
+            <img src="img/logo.png" width="950" height="250">
+        </section>
+        <section id="categorias">
+            <section class="uno">
+                <img src="img/ropas.jpg" width="250" height="180">
+                <h3>ROPAS</h3>
+                <p class="parrafo">
+                  A veces, la moda sólo significa usar ropa con colores a juego. Otras veces, significa horas en el baño preparándose para una ocasión especial. No hay día en tu vida en el que no podría ahorrar unos pocos minutos con los consejos de moda correctas e ideas.  </p>
+
+           <a href="" class="leer-mas">leer mas</a><br><br>
+            </section>
+           <section class="uno dos">
+               <img src="img/3.jpg" width="250" height="180">
+                <h3>ZAPATOS</h3>
+                <p class="parrafo">
+                  Elige zapatos de tacón, deportivas, botas planas con tachuelas o calados, bluchers con plataforma, bambas bordadas o botines chelsea de colores para chica.</p>
+
+           <a href="" class="leer-mas">leer mas</a><br><br>
+           </section>
+           <section class="uno">
+               <img src="img/abrigos.jpg" width="250" height="180">
+                <h3>ABRIGOS</h3>
+                <p class="parrafo">
+                 Últimas tendencias en abrigos de mujer. Descubre nuestra selección de abrigos, trench, parkas, cazadoras y anoraks. Envío y devoluciones gratis.Los abrigos más románticos de otoño invierno 2017. Cazadoras, plumíferos, abrigos de pelo o parkas para mujeres apasionadas.</p>
+
+           <a href="" class="leer-mas">leer mas</a><br><br>
+           </section>
+       </section>
+       <section id="info">
+           <section id="izq">
+            
+                  <img src="img/fachada.jpg" align="left" width="190" class="img">
+                  
+                  <h2>BIENVENIDOS</h2>
+                  <p class="parrafo">
+                   Bienvenida a la moda urbana, sport y joven. Bienvenida a BUTIG STILO. En la sección Ropa mujer de nuestra web encontrarás prendas de ropa para chicas como tú, que no tienen complejos y a las que les gusta innovar y ser diferentes cada día, pero sin renunciar a la comodidad y al espíritu deportivo.  
+                    <br><br>
+                  Por ello hemos creado un amplio catálogo de prendas y accesorios para que tengas mucho donde elegir, tanto de nuestra firma Polinesia como de otras marcas de calidad, como Nike, Adidas o Reebok. Y además, para que puedas elegir al mejor precio, puesto que en nuestra web siempre encontrarás muchas ofertas disponibles.
+
+                </p>
+
+
+           </section>
+            <section id="der">
+                <h2>VIDEO DE ROPA</h2>
+                <iframe width="300" height="290" src="https://www.youtube.com/embed/TXJCdV5HCJM" frameborder="0" allowfullscreen></iframe></section>
+       </section>
+       <FOOTER>
+           <P>
+               (C)Todos los derechos reservados UAJMS-2017<br>
+               Diseñado por grupo THE FRAMEWORK.
+           </P>
+       </FOOTER>
+    </div>
+    
+</body>
+</html>

@@ -1,0 +1,178 @@
+/* Fix user-agent */
+
+* {
+  
+  font-family:Georgia;
+  font-style: italic;
+  font-weight: bold;
+  box-sizing: border-box;
+
+}
+
+html {
+  font-weight: 300;
+  -webkit-font-smoothing: antialiased;
+}
+
+html, input {
+  font-family:
+    "HelveticaNeue-Light",
+    "Helvetica Neue Light",
+    "Helvetica Neue",
+    Helvetica,
+    Arial,
+    "Lucida Grande",
+    sans-serif;
+}
+
+html, body {
+
+  height: 100%;
+  margin: 0;
+  padding: 0;
+}
+
+ul {
+  list-style: none;
+  word-wrap: break-word;
+}
+
+
+
+
+
+#canvas{
+  width: 300px;
+  height: 200px;
+  border-radius:10%;
+  float: right;
+  margin: 10px;
+  position: relative;
+  top: -70px;
+  left: -40px;
+
+}
+/* Pages */
+
+.pages {
+  height: 10%;
+  margin: 0;
+  padding: 0;
+  width: 50%;
+}
+
+.page {
+  height: 100%;
+  position: absolute;
+  width: 100%;
+}
+
+/* Login Page */
+
+.login.page {
+  background-color: #fff;
+}
+
+.login.page .form {
+  height: 100px;
+  margin-top: -100px;
+  position: absolute;
+  left: 33%;
+  text-align: center;
+  top: 50%;
+  width: 100%;
+}
+
+.login.page .form .usernameInput {
+  background-color: transparent;
+  border: none;
+  border-bottom: 2px solid #fff;
+  outline: none;
+  padding-bottom: 15px;
+  text-align: center;
+  width: 400px;
+}
+
+.login.page .title {
+  font-size: 200%;
+}
+
+.login.page .usernameInput {
+  font-size: 200%;
+  letter-spacing: 3px;
+}
+
+.login.page .title, .login.page .usernameInput {
+  color: #000;
+  font-weight: 100;
+  margin: auto;
+}
+
+/* Chat page */
+
+.chat.page {
+  display: none;
+}
+
+/* Font */
+
+.messages {
+  font-size: 150%;
+}
+
+.inputMessage {
+  font-size: 100%;
+}
+
+.log {
+  
+  color: black;
+  font-size: 26px;
+  margin: 4px;
+  text-align: center;
+}
+
+/* Messages */
+
+.chatArea {
+  height: 100%;
+  padding-bottom: 60px;
+}
+
+.messages {
+  color: brown;
+  height: 65%;
+  float: right; 
+  margin: 150px;
+  padding: 10px 20px 10px 20px;
+  position:relative;
+  top:50px;
+  left:11%;
+  overflow-y: scroll;
+}
+
+.message.typing .messageBody {
+  color: gray;
+}
+
+.username {
+  font-weight: 700;
+  overflow: hidden;
+  padding-right: 15px;
+  text-align: right;
+}
+
+/* Input */
+
+.inputMessage {
+  border: 10px solid #000;
+  bottom: 0;
+  height: 60px;
+  left:right;
+  outline: none;
+  padding-right: 10px;
+  position: absolute;
+  right: 0;
+  width:27%;
+  
+}
